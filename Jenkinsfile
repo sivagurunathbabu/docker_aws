@@ -24,7 +24,7 @@ pipeline {
         stage('Build') {
            steps {
                      
-                sh "docker build -t web-1.0 ."
+                sh "sudo docker build -t web-1.0 ."
                  }
         }
     }
