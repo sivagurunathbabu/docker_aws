@@ -25,7 +25,7 @@ pipeline {
            steps {
                      
                 sh "sudo docker build -t web ."
-                sh "sudo docker tag sivaguruaws/web:web1.0"
+                sh "sudo docker tag web sivaguruaws/web:web1.0"
                  }
         }
 
