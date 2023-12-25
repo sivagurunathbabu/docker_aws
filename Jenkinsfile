@@ -47,7 +47,7 @@ pipeline {
 
                 // withCredentials([string(credentialsId: 'dockerhub-id', variable: '')]) {
                     // some block
-                }           
+                // }           
                 
              }
         }
