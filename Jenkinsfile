@@ -31,12 +31,10 @@ pipeline {
         stage('Docker Push') {
            steps {
 
-               withCredentials([string(credentialsId: 'dockerhub-id', variable: 'dockerhib_id')]) {
-                    // some block
-                    sh " sudo docker login -u sivaguruaws -p ${dockerhub-id} "
+               withCredentials([string(credentialsId: 'docker-hub-id', variable: 'docker-hub-id')]) {
+                sh " sudo docker login -u sivaguruaws -p ${docker-hub-id} "
                     sh "sudo docker push sivaguruaws/aws:web.1.0"
-
-                }         
+                }
                 
              }
         }
