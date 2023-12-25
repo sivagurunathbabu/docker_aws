@@ -52,8 +52,7 @@ pipeline {
              }
         }
 
-        withCredentials([string(credentialsId: '38ff0869-b4d4-45fc-8611-9a24eb42ca2e', variable: '')]) {
+        // withCredentials([string(credentialsId: '38ff0869-b4d4-45fc-8611-9a24eb42ca2e', variable: '')]) {
     // some block
-}
     }
 }
