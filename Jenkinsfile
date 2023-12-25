@@ -27,5 +27,33 @@ pipeline {
                 sh "sudo docker build -t web-1.0 ."
                  }
         }
+
+        stage('Docker Push') {
+           steps {
+
+               withCredentials([string(credentialsId: 'dockerhub-id', variable: 'dockerhib_id')]) {
+                    // some block
+                    sh " sudo docker login -u sivaguruaws -p ${dockerhub-id} "
+                    sh "sudo docker push sivaguruaws/aws:web.1.0"
+
+                }         
+                
+             }
+        }
+
+
+        stage('ECR Push') {
+           steps {
+
+                // withCredentials([string(credentialsId: 'dockerhub-id', variable: '')]) {
+                    // some block
+                }           
+                
+             }
+        }
+
+        withCredentials([string(credentialsId: '38ff0869-b4d4-45fc-8611-9a24eb42ca2e', variable: '')]) {
+    // some block
+}
     }
 }
