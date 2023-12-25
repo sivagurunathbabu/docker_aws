@@ -33,7 +33,7 @@ pipeline {
 
                withCredentials([string(credentialsId: 'docker_hub_id', variable: 'docker_hub_id')]) {
                 sh " sudo docker login -u sivaguruaws -p ${docker_hub_id} "
-                    sh "sudo docker push sivaguruaws/aws"
+                    sh "sudo docker push sivaguruaws/web-1.0"
                 }
                 
              }
