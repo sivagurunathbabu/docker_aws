@@ -23,7 +23,6 @@ pipeline {
 
         stage('Build') {
            steps {
-                     
                 sh "sudo docker build -t web ."
                 sh "sudo docker tag web sivaguruaws/web:web1.0"
                 sh "sudo docker tag web:latest 851131988743.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
@@ -48,6 +47,7 @@ pipeline {
                     accessKeyVariable: "AWS_ACCESS_KEY_ID",
                     secretKeyVariable: "AWS_SECRET_ACCESS_KEY"
                 ]])  {
+                sh "sudo chown ubuntu:ubuntu /var/run/docker.sock"
                 sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 851131988743.dkr.ecr.ap-south-1.amazonaws.com"
                 sh "sudo docker push 851131988743.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
                 }
