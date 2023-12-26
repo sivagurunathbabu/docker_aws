@@ -49,7 +49,7 @@ pipeline {
                     secretKeyVariable: "AWS_SECRET_ACCESS_KEY"
                 ]])  {
                 sh " sudo aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 851131988743.dkr.ecr.ap-south-1.amazonaws.com"
-                sh "sudo docker push 851131988743.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
+                sh " sudo docker push 851131988743.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
                 }
                 
              }
