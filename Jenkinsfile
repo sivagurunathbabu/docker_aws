@@ -1,5 +1,5 @@
 pipeline {
-    agent {label "aws-label-static" }
+    agent {label "aws-label" }
     // agent any
 
     tools {
@@ -25,7 +25,7 @@ pipeline {
            steps {
                 sh "sudo docker build -t web ."
                 sh "sudo docker tag web sivaguruaws/web:web1.0"
-                sh "sudo docker tag web:latest 851131988743.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
+                sh "sudo docker tag web:latest 441817674904.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
                  }
         }
 
@@ -33,7 +33,7 @@ pipeline {
            steps {
                withCredentials([string(credentialsId: 'docker_hub_id', variable: 'docker_hub_id')]) {
                 sh " sudo docker login -u sivaguruaws -p ${docker_hub_id} "
-                    sh "sudo docker push sivaguruaws/web:web1.0"
+                sh "sudo docker push sivaguruaws/web:web1.0"
                 }
                 
              }
@@ -43,13 +43,13 @@ pipeline {
            steps {
                withCredentials([[
                     $class: "AmazonWebServicesCredentialsBinding",
-                    credentialsId: "awscred",
+                    credentialsId: "aws_key",
                     accessKeyVariable: "AWS_ACCESS_KEY_ID",
                     secretKeyVariable: "AWS_SECRET_ACCESS_KEY"
                 ]])  {
                 sh "sudo chown ubuntu:ubuntu /var/run/docker.sock"
-                sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 851131988743.dkr.ecr.ap-south-1.amazonaws.com"
-                sh "sudo docker push 851131988743.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
+                sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 441817674904.dkr.ecr.ap-south-1.amazonaws.com"
+                sh "sudo docker push 441817674904.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
                 }
                 
              }
