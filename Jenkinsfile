@@ -60,7 +60,7 @@ pipeline {
            steps {
                sshagent(credentials: ['ubuntu']) {
                 //    sshagent(credentials: ['8cc32970-f74f-4e38-ab8c-b188c1bb6196']) {
-               sh “scp -o StrictHostKeyChecking=no deploy.sh ubuntu@ 172.31.44.241:/tmp”
+               sh “scp -o StrictHostKeyChecking=no deploy.sh ubuntu@172.31.44.241:/tmp”
                sh “ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.44.241 sh /tmp/deploy.sh”
 
                 }
