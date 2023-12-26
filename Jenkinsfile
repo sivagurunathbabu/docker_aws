@@ -1,5 +1,5 @@
 pipeline {
-    agent {label "aws-label" }
+    agent {label "aws-label-static" }
     // agent any
 
     tools {
