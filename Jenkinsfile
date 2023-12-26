@@ -40,27 +40,27 @@ pipeline {
              }
         }
 
-        // stage('ECR Push') {
-        //    steps {
-        //        withCredentials([[
-        //             $class: "AmazonWebServicesCredentialsBinding",
-        //             credentialsId: "awscred",
-        //             accessKeyVariable: "AWS_ACCESS_KEY_ID",
-        //             secretKeyVariable: "AWS_SECRET_ACCESS_KEY"
-        //         ]])  {
-        //         sh " sudo aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 851131988743.dkr.ecr.ap-south-1.amazonaws.com"
-        //         sh "sudo docker push 851131988743.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
-        //         }
+        stage('ECR Push') {
+           steps {
+               withCredentials([[
+                    $class: "AmazonWebServicesCredentialsBinding",
+                    credentialsId: "awscred",
+                    accessKeyVariable: "AWS_ACCESS_KEY_ID",
+                    secretKeyVariable: "AWS_SECRET_ACCESS_KEY"
+                ]])  {
+                sh " sudo aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 851131988743.dkr.ecr.ap-south-1.amazonaws.com"
+                sh "sudo docker push 851131988743.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
+                }
                 
-        //      }
-        // }
+             }
+        }
 
 
         stage('Deploy') {
            steps {
                sshagent(credentials: ['ubuntu']) {
                 //    sshagent(credentials: ['8cc32970-f74f-4e38-ab8c-b188c1bb6196']) {
-               sh 'scp -o StrictHostKeyChecking=no deploy.sh ubuntu@172.31.44.241:/tmp'
+               sh 'scp -o StrictHostKeyChecking=no deploy.sh ubuntu@172.31.44.241:/tmp/'
                sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.44.241 sh /tmp/deploy.sh'
 
                 }
