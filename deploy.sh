@@ -3,8 +3,8 @@
     fi
     git clone https://github.com/sivagurunathbabu/docker_aws.git
     cd docker_aws
-    docker-compose stop
-    docker-compose rm -f
-    docker-compose up -d 
-    docker-compose ps
+    sudo docker-compose stop
+    sudo docker-compose rm -f
+    sudo docker-compose up -d 
+    sudo docker-compose ps
 
