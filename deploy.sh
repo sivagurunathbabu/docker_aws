@@ -1,6 +1,5 @@
     #! /bin/bash
-    If [-d “docker_aws” ]; then
-    rm -rf docker_aws
+    if [ -d “docker_aws” ]; then rm -rf docker_aws
     fi
     git clone https://github.com/sivagurunathbabu/docker_aws.git
     cd docker_aws
