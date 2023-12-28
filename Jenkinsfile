@@ -39,21 +39,21 @@ pipeline {
              }
         }
 
-        stage('ECR Push') {
-           steps {
-               withCredentials([[
-                    $class: "AmazonWebServicesCredentialsBinding",
-                    credentialsId: "aws_key",
-                    accessKeyVariable: "AWS_ACCESS_KEY_ID",
-                    secretKeyVariable: "AWS_SECRET_ACCESS_KEY"
-                ]])  {
-                sh "sudo chown ubuntu:ubuntu /var/run/docker.sock"
-                sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 441817674904.dkr.ecr.ap-south-1.amazonaws.com"
-                sh "sudo docker push 441817674904.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
-                }
+        // stage('ECR Push') {
+        //    steps {
+        //        withCredentials([[
+        //             $class: "AmazonWebServicesCredentialsBinding",
+        //             credentialsId: "aws_key",
+        //             accessKeyVariable: "AWS_ACCESS_KEY_ID",
+        //             secretKeyVariable: "AWS_SECRET_ACCESS_KEY"
+        //         ]])  {
+        //         sh "sudo chown ubuntu:ubuntu /var/run/docker.sock"
+        //         sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 441817674904.dkr.ecr.ap-south-1.amazonaws.com"
+        //         sh "sudo docker push 441817674904.dkr.ecr.ap-south-1.amazonaws.com/web:latest"
+        //         }
                 
-             }
-        }
+        //      }
+        // }
 
 
         // stage('Deploy') {
