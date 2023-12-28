@@ -56,17 +56,25 @@ pipeline {
         }
 
 
+        // stage('Deploy') {
+        //    steps {
+        //        sshagent(credentials: ['ubuntu']) {
+        //         //    sshagent(credentials: ['8cc32970-f74f-4e38-ab8c-b188c1bb6196']) {
+        //        sh 'scp -o StrictHostKeyChecking=no deploy.sh ubuntu@172.31.38.23:/tmp/'
+        //        sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.38.23 sh /tmp/deploy.sh'
+
+        //         }
+        //      }
+        // }
+        
+
         stage('Deploy') {
            steps {
-               sshagent(credentials: ['ubuntu']) {
-                //    sshagent(credentials: ['8cc32970-f74f-4e38-ab8c-b188c1bb6196']) {
-               sh 'scp -o StrictHostKeyChecking=no deploy.sh ubuntu@172.31.38.23:/tmp/'
-               sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.38.23 sh /tmp/deploy.sh'
-
+                   sh “docker -H tcp://172.31.32.184:2377 stack deploy -c stack-dc.yml mystack”
+                    sh “docker -H tcp://172.31.32.184:2377 stack services mystack”
                 }
              }
         }
-        
       
     }
 }
