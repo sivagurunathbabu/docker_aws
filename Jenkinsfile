@@ -70,12 +70,11 @@ pipeline {
 
         stage('Deploy') {
            steps {
-                   sh 'docker -H tcp://172.31.32.184:2377 stack deploy -c stack-dc.yml mystack'
-                    sh 'docker -H tcp://172.31.32.184:2377 stack services mystack'
+                   sh ' docker -H tcp://172.31.32.184:2377 stack deploy -c stack-dc.yml mystack'
+                   sh ' docker -H tcp://172.31.32.184:2377 stack services mystack'
                 }
              }
         }
       
     }
-}
 }
